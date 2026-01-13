@@ -1,4 +1,4 @@
-public class MetersAndFeetConversionspublic {
+public class MetersAndFeetConversions {
     /** Convert from feet to meters */
     static double footToMeter(double foot){
         double meter = 0.305 * foot;
