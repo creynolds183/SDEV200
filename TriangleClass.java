@@ -64,57 +64,19 @@ class Triangle extends GeometricObject{
         this.side3 = side3;
     }
 
-    public Double getArea(){
+    @Override
+    public double getArea(){
         Double s = (side1 + side2 + side3) / 2;
         return Math.sqrt(s* ((s - side1) * (s - side2) * ( s -side3)));
     }
 
-    public Double getPerimeter() {
+    @Override
+    public double getPerimeter() {
         return side1 + side2 + side3;
     }
 
+    @Override
     public String toString() {
         return "Triangle: side1 = " + side1 + " side2 = " + side2 + " side3 = " + side3;
-    }
-}
-
-class GeometricObject{
-    private String color = "white";
-    private Boolean filled;
-    private java.util.Date dateCreated;
-
-
-    public GeometricObject(){
-        dateCreated = new java.util.Date();
-    }
-
-    public GeometricObject(String color, boolean filled){
-        dateCreated = new java.util.Date();
-        this.color = color;
-        this.filled = filled;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public Boolean getFilled() {
-        return filled;
-    }
-
-    public void setFilled(Boolean filled){
-         this.filled = filled;
-    }
-
-    public java.util.Date getDateCreated() {
-        return dateCreated;
-    }
-
-    public String toString() {
-        return "created on " + dateCreated + "\ncolor: " + color + "and filled: " + filled;
     }
 }
