@@ -113,7 +113,7 @@ class RationalUsingBigInteger extends Number
 
   @Override
   public double doubleValue(){
-    return (denominator.divide(numerator.multiply(BigInteger.valueOf(1)))).doubleValue();
+    return ((numerator.multiply(BigInteger.valueOf(1))).divide(denominator)).doubleValue();
   }
 
   @Override
