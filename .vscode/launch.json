@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "BoardTest",
+            "request": "launch",
+            "mainClass": "FinalProject.BoardTest",
+            "projectName": "SDEV200_f96050f0"
+        },
+        {
+            "type": "java",
             "name": "SetClockTime",
             "request": "launch",
             "mainClass": "SetClockTime",
