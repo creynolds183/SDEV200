@@ -18,12 +18,20 @@ public class Game {
     // Run the game until a winstate is reached print the win state(Will be changed
     // with JavaFX where a Loop will be uneeded.)
     public String run() {
-        System.out.println(board.toString());
+        System.out.println(board.toString()); //first placement is always X
         int nextBoard = board.PlaceElement("X", 0);
         while (board.checkWin().equals("")) {
             System.out.println(board.toString());
-            nextBoard = board.PlaceElement("O", nextBoard);
-            nextBoard = board.PlaceElement("X", nextBoard);
+            if (board.checkWin() == ""){ //check for a win state to end loop early
+                nextBoard = board.PlaceElement("O", nextBoard);
+            }else{
+                continue;
+            }
+            if (board.checkWin() == ""){ // check for a win state to end loop early
+                nextBoard = board.PlaceElement("X", nextBoard);
+            }else{
+                continue;
+            }
             // if (nextBoard == 0) {
             //     System.out.print("O pick any valid board");
             //     System.out.println(board.toString());

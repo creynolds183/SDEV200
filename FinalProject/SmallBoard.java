@@ -32,8 +32,7 @@ public class SmallBoard extends Board {
         return boardString;
     }
 
-    // Places an element as long as it is valid, returns the token placed or an
-    // empty string if invalid
+    //find the col and row on the board before placing element e in that slot
     @Override
     public int PlaceElement(String e, int currentSlot) {
         int row;

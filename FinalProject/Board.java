@@ -3,6 +3,7 @@ package FinalProject;
 public abstract class Board {
     String[][] board = new String[3][3];
     public int currentSlot;
+
     //create an empty board
     public Board() {
         for (int row = 0; row < 3; row++) {
@@ -17,8 +18,10 @@ public abstract class Board {
         this.board = board;
     }
 
+    //all boards can place elements on them but the actions differ
     public abstract int PlaceElement(String e, int currentSlot);
 
+    //all boards need to check for win states, which are always the same.
     public String checkWin(){
         //hard code certain elements for column and diagonal checks.
         String elementOne = board[0][0];

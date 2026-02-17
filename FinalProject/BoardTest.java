@@ -1,7 +1,5 @@
 package FinalProject;
 
-import java.util.Scanner;
-
 //test class to be removed when JavaFX is added.
 public class BoardTest {
     public static void main(String[] args) {
@@ -22,7 +20,7 @@ public class BoardTest {
         System.out.println(testBoard.CheckWin() + "test4"); */ //old code for testing my abstract board classes methods before creating the subclasses.
         
         Game ticTacToe = new Game();
-        System.out.println(ticTacToe.run());
+        System.out.println(ticTacToe.run() + " Wins!");
 
 
     }

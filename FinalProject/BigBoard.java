@@ -6,15 +6,19 @@ public class BigBoard extends Board {
     SmallBoard[][] smallBoardArray = new SmallBoard[3][3];
     Scanner input;
 
-    // create a big board, an array of small boards
+    // create the boards
     public BigBoard() {
+        // Scanner for choosing a new board
         input = new Scanner(System.in);
+
+        // board array for winning the game
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
                 board[row][col] = "";
             }
         }
 
+        // array of small boards
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
                 smallBoardArray[row][col] = new SmallBoard();
@@ -22,7 +26,7 @@ public class BigBoard extends Board {
         }
     }
 
-    // make a string of the board for testing
+    // make a string of the board for testing does not work.
     public String toString() {
         String boardString = "";
 
@@ -37,19 +41,23 @@ public class BigBoard extends Board {
         return boardString;
     }
 
-    // place an element if the board chosen is at a win state, full, or it is the
-    // start of the game pick any board.
+    // based on the selected slot set the row and col for the smallboard before
+    // placing an element in that board
     @Override
     public int PlaceElement(String e, int currentSlot) {
+        // create temporary variables
         int row;
         int col;
+
+        // check what board to place in
         switch (currentSlot) {
             case 0:
-                System.out.println(e + "Pick any board");
+                // if a small board is at a win state the player can select any board
+                System.out.println(e + " Pick any board");
                 int anySlot = input.nextInt();
-                if (anySlot > 0 && anySlot < 10){
+                if (anySlot > 0 && anySlot < 10) {
                     return PlaceElement(e, anySlot);
-                } else{
+                } else {
                     System.out.println("Choose a valid board");
                     return PlaceElement(e, 0);
                 }
@@ -92,18 +100,24 @@ public class BigBoard extends Board {
             default:
                 return 0;
         }
+        // based on the board selected place an element in it
         if (smallBoardArray[row][col].checkWin() == "") {
-                    System.out.println(e + " Pick a Slot on board " + currentSlot);
-                    System.out.println(toString());
-                    int slot = input.nextInt();
-                    if(!(smallBoardArray[row][col].PlaceElement(e, slot) == 0)){
-                        return slot;
-                    }else{
-                        System.out.println(e + " Pick a valid slot");
-                        return PlaceElement(e, currentSlot);
-                    }
-        }else{
-            board[row][col] = smallBoardArray[row][col].checkWin();
+            System.out.println(e + " Pick a Slot on board " + currentSlot);
+            int slot = input.nextInt();
+            if (!(smallBoardArray[row][col].PlaceElement(e, slot) == 0)) { // if a board is at a win state choose any
+                                                                           // board
+                if (smallBoardArray[row][col].checkWin() == "") { // after placing a token if the small board is at a
+                                                                  // winstate at that win state to the big board array
+                    return slot;
+                } else {
+                    board[row][col] = smallBoardArray[row][col].checkWin();
+                    return slot;
+                }
+            } else {
+                System.out.println(e + " Pick a valid slot");
+                return PlaceElement(e, currentSlot);
+            }
+        } else {
             return PlaceElement(e, 0);
         }
     }
