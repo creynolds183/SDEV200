@@ -1,9 +1,9 @@
 package FinalProject;
 
-public class SmallBoard extends Board{
+public class SmallBoard extends Board {
 
-    public SmallBoard(){
-
+    // create a board
+    public SmallBoard() {
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
                 board[row][col] = "";
@@ -11,59 +11,80 @@ public class SmallBoard extends Board{
         }
     }
 
-    public String toString(){
+    // convert the board to a string, will be removed when JavaFX is added.
+    public String toString(int rowNum) {
         String boardString = "";
 
-        for (int row = 0; row < 3; row++) {
-            boardString = boardString + "\n";
-            for (int col = 0; col < 3; col++) {
-                if(board[row][col].equals("")){
-                    if(col == 0){
-                        boardString = boardString + " ";
-                    }else{
-                        boardString = boardString + "|" + " ";
-                    }
-                } else if(col == 0){
-                    boardString = boardString + board[row][col];
-                }else{
-                    boardString = boardString + "|" + board[row][col];
+        for (int col = 0; col < 3; col++) {
+            if (board[rowNum][col].equals("")) {
+                if (col == 0) {
+                    boardString = boardString + " ";
+                } else {
+                    boardString = boardString + "|" + " ";
                 }
+            } else if (col == 0) {
+                boardString = boardString + board[rowNum][col];
+            } else {
+                boardString = boardString + "|" + board[rowNum][col];
             }
         }
 
         return boardString;
     }
-    public void PlaceElement(String e, int currentSlot){
-        switch(currentSlot){
+
+    // Places an element as long as it is valid, returns the token placed or an
+    // empty string if invalid
+    @Override
+    public int PlaceElement(String e, int currentSlot) {
+        int row;
+        int col;
+        switch (currentSlot) {
             case 1:
-                board[0][0] = e;
+                row = 0;
+                col = 0;
                 break;
             case 2:
-                board[0][1] = e;
+                row = 0;
+                col = 1;
                 break;
             case 3:
-                board[0][2] = e;
+                row = 0;
+                col = 2;
                 break;
             case 4:
-                board[1][0] = e;
+                row = 1;
+                col = 0;
                 break;
             case 5:
-                board[1][1] = e;
+                row = 1;
+                col = 1;
                 break;
             case 6:
-                board[1][2] = e;
+                row = 1;
+                col = 2;
                 break;
             case 7:
-                board[2][0] = e;
+                row = 2;
+                col = 0;
                 break;
             case 8:
-                board[2][1] = e;
+                row = 2;
+                col = 1;
                 break;
             case 9:
-                board[2][2] = e;
+                row = 2;
+                col = 2;
                 break;
+            default:
+                System.out.println("Choose a valid slot");
+                return 0;
         }
-
-        checkWin();
+        if (board[row][col] == "") {
+            board[row][col] = e;
+            return currentSlot;
+        } else {
+            System.out.println("Choose a valid slot");
+            return 0;
+        }
     }
 }

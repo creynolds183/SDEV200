@@ -2,6 +2,7 @@ package FinalProject;
 
 import java.util.Scanner;
 
+//test class to be removed when JavaFX is added.
 public class BoardTest {
     public static void main(String[] args) {
         /* String[][] testBoardOne = {{"", "X", "X"}, {"","",""}, {"","",""}};
@@ -19,26 +20,10 @@ public class BoardTest {
         String[][] testBoardFour = {{"X", "O", "X"}, {"X","O","X"}, {"O","X","O"}};
         testBoard = new Board(testBoardFour);
         System.out.println(testBoard.CheckWin() + "test4"); */ //old code for testing my abstract board classes methods before creating the subclasses.
+        
+        Game ticTacToe = new Game();
+        System.out.println(ticTacToe.run());
 
-        SmallBoard testBoard = new SmallBoard();
-        String currentTurn = "X";
-        while(testBoard.checkWin().equals("")){
-            Scanner input = new Scanner(System.in);
-            System.out.println("Give a slot");
-
-            int slot = input.nextInt();
-            testBoard.PlaceElement(currentTurn, slot);
-
-            if (currentTurn.equals("X")){
-                currentTurn = "O";
-            } else{
-                currentTurn = "X";
-            }
-
-            System.out.println(testBoard.toString());
-        }
-
-        System.out.println(testBoard.checkWin());
 
     }
 }

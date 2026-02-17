@@ -2,7 +2,8 @@ package FinalProject;
 // Board class used by both SmallBoard and LargeBoard 
 public abstract class Board {
     String[][] board = new String[3][3];
-
+    public int currentSlot;
+    //create an empty board
     public Board() {
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
@@ -11,9 +12,12 @@ public abstract class Board {
         }
     }
 
+    //Unused Board constructor for when originally testing win states.
     public Board(String[][] board) {
         this.board = board;
     }
+
+    public abstract int PlaceElement(String e, int currentSlot);
 
     public String checkWin(){
         //hard code certain elements for column and diagonal checks.
